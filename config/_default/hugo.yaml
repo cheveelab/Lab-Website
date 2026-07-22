@@ -66,6 +66,7 @@ sitemap:
 outputFormats:
   redirects:
     baseName: _redirects
-    mediaType: text/netlify
+    mediaType: text/plain
     isPlainText: true
     notAlternative: true
+
