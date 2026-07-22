@@ -42,9 +42,6 @@ enableRobotsTXT: true
 footnotereturnlinkcontents: <sup>^</sup>
 ignoreFiles: [".ipynb_checkpoints$", "\\.Rmd$", "\\.Rmarkdown$", "_cache$"]
 disableAliases: true
-outputs:
-  home: [HTML, RSS, headers, redirects, backlinks]
-  section: [HTML, RSS]
 imaging:
   resampleFilter: lanczos
   quality: 90
@@ -63,10 +60,5 @@ security:
   _merge: deep
 sitemap:
   _merge: deep
-outputFormats:
-  redirects:
-    baseName: _redirects
-    mediaType: text/plain
-    isPlainText: true
-    notAlternative: true
+
 
