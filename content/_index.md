@@ -11,7 +11,7 @@ sections:
       primary_action:
         text: Join Our Lab
         url: "/join-us"
-        icon: hero/user-add
+        icon: user-plus
         style: gradient
       secondary_action:
         text: Meet the Team
