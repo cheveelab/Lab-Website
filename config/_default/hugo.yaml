@@ -63,3 +63,9 @@ security:
   _merge: deep
 sitemap:
   _merge: deep
+outputFormats:
+  redirects:
+    baseName: _redirects
+    mediaType: text/netlify
+    isPlainText: true
+    notAlternative: true
