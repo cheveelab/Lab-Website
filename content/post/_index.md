@@ -9,5 +9,5 @@ sections:
         folders:
           - post
     design:
-      view: date-title-summary
+      view: card
 ---

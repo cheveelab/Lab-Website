@@ -1,0 +1,35 @@
+/* 1. Force the section to take up more space */
+#publications .container,
+#publications .max-w-prose,
+#publications .mx-auto {
+  max-width: 1200px !important; /* This is the 'Cregg Lab' width */
+  width: 95% !important;
+}
+
+/* 2. Target the block specifically if it's a markdown block */
+#publications .hb-markdown,
+#publications .prose {
+  max-width: 100% !important;
+  width: 100% !important;
+}
+
+/* 3. If your block ID is different, this fuzzy selector hits anything with "publication" */
+[id*="publication"] .container,
+[id*="publication"] .max-w-prose {
+  max-width: 1200px !important;
+  width: 95% !important;
+}
+#publications h3, 
+#publications h3 a {
+  font-size: 1rem !important;
+  font-weight: 600 !important; /* Force maximum weight */
+  color: #111 !important;      /* Darker color makes it look bolder */
+  text-decoration: none !important;
+}
+
+/* Force maximum boldness for publication titles */
+#publications h4, 
+#publications h4 a {
+  font-weight: 600 !important;
+  color: #000000 !important;
+}

@@ -1,0 +1,62 @@
+{{/* 1. Try named 'limit="3"', 2. Try first positional '3', 3. Default to 999 */}}
+{{ $limit := .Get "limit" | default (.Get 0) | default 999 | int }}
+{{ $pubs := (where .Site.RegularPages "Section" "publication").ByDate.Reverse }}
+
+<div style="display: flex; flex-direction: column; gap: 0px;">
+  {{ range first $limit $pubs }}
+  <div class="flex flex-row items-center gap-6 py-0 mt-[-12px] first:mt-0"> 
+    {{ $image := .Resources.GetMatch "featured*" }}
+    {{ if $image }}
+    <div class="flex-shrink-0">
+      <img src="{{ $image.RelPermalink }}" 
+           alt="{{ .Title }}" 
+           style="width: 160px !important; height: auto !important; max-height: 160px !important;"
+           class="object-contain rounded border border-gray-100 bg-white">
+    </div>
+    {{ end }}
+    <div class="flex-1 min-w-0 max-w-5xl">
+  <!-- Title -->
+  <h4 style="font-size: 18px !important; font-weight: 900 !important; line-height: 1.1 !important; margin-bottom: 8px !important;" class="text-gray-900">
+    <a href="{{ .RelPermalink }}" class="hover:text-primary-600 no-underline">{{ .Title }}</a>
+  </h4>
+  
+  <!-- Authors -->
+  <p style="font-size: 15px !important; color: #6b7280 !important; margin-bottom: 0px !important;" class="leading-tight">
+    {{ delimit .Params.authors ", " }}
+  </p>
+  <!-- Combined Journal, Year, and PDF Button on one line -->
+  <div class="flex items-center gap-3 leading-tight" style="margin-top: 2px;">
+    <p style="font-size: 15px !important; color: #6b7280 !important; margin-bottom: 0px; line-height: 1.2 !important;">
+      {{ with .Params.publication }}{{ . }}{{ end }}{{ with .Date }} ({{ . | dateFormat "2006" }}){{ end }}
+    </p>
+    {{ $pdf_url := "" }}
+    {{ if .Params.url_pdf }}{{ $pdf_url = .Params.url_pdf }}{{ else }}{{ range .Params.links }}{{ if eq .type "pdf" }}{{ $pdf_url = .url }}{{ end }}{{ end }}{{ end }}
+    {{ if $pdf_url }}
+<a href="{{ $pdf_url }}" target="_blank" rel="noopener" 
+   class="inline-block bg-gray-100 hover:bg-gray-200 text-black text-[11px] font-semibold py-1 px-3 rounded leading-tight transition-colors duration-200 align-middle"
+   style="margin-bottom: -15px;">
+  PDF
+</a>
+    {{ end }}
+  </div>
+</div>
+  </div>
+  {{ end }}
+  <!-- See More Publications button -->
+ <div class="mt-6 flex justify-center">
+    {{ if gt $limit 20 }}
+      {{/* MAIN PUBLICATIONS PAGE: Show a button back to home (optional) */}}
+      <a href="https://scholar.google.com/citations?user=iapSlosAAAAJ&hl=en" 
+         target="_blank" rel="noopener"
+         class="inline-block bg-gray-100 hover:bg-gray-200 text-black text-sm font-semibold py-2 px-5 rounded transition-colors duration-300">
+        All Publications - Google Scholar
+      </a>
+    {{ else }}
+      {{/* HOMEPAGE: Show your Google Scholar link */}}
+      <a href="/publication" 
+         class="inline-block bg-primary-600 hover:bg-primary-700 text-white text-sm font-semibold py-2 px-5 rounded transition-colors duration-300">
+        See more publications
+      </a>
+    {{ end }}
+  </div>
+</div>

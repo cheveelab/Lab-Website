@@ -1,0 +1,8 @@
+{{ $video := resources.Get "media/featured.mp4" }}
+{{ if $video }}
+  <video autoplay loop muted playsinline style="width: 100%; border-radius: 8px;">
+    <source src="{{ $video.RelPermalink }}" type="video/mp4">
+  </video>
+{{ else }}
+  <p style="color: red;">ERROR: File not found in assets/media/featured.mp4</p>
+{{ end }}

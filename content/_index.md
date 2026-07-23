@@ -43,23 +43,25 @@ sections:
       items:
         - title: Project Alpha
           summary: Exploring new frontiers in X.
-          image: projects/alpha.jpg
+          image: projects/Traces.png
           url: /project/project-alpha/
         - title: Project Beta
           summary: Developing technologies for Y.
           image: projects/beta.jpg
           url: /project/project-beta/
     id: projects
-  - block: collection
+  - block: markdown
+    id: publications
     content:
       title: Recent Publications
-      count: 5
-      filters:
-        folders:
-          - publication
+      text: |
+        {{< list_publications limit=3 >}}
+      link_more_text: "See more publications"
+      link_more_url: "/publication/"
     design:
-      view: citation
-    id: publications
+      columns: '1'
+      spacing:
+        padding: ['4rem', '0', '4rem', '0']
   - block: collection
     content:
       title: News & Updates
